@@ -1,3 +1,11 @@
+## Lighthouse
+
+[Открыть сайт](https://dagunn.github.io/marco/)
+
+Performance 99, Accessibility 100, Best Practices 100, SEO 100 (мобильная версия).
+
+![Результаты Lighthouse: Performance 99, Accessibility 100, Best Practices 100, SEO 100](docs/lighthouse.png)
+
 ## Запуск
 
 ```bash
