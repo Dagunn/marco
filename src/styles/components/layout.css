@@ -1,0 +1,9 @@
+@layer components {
+  .canvas {
+    @apply relative mx-auto w-full max-w-canvas;
+  }
+
+  .title {
+    @apply font-display text-display;
+  }
+}

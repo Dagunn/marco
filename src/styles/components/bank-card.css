@@ -1,0 +1,65 @@
+@layer components {
+  .bank-card {
+    @apply absolute h-451.75 w-334.25 overflow-hidden rounded-[--spacing(34)] bg-cobalt text-navy;
+    will-change: transform;
+  }
+
+  .bank-card-glow {
+    @apply absolute rounded-full blur-[--spacing(47.5)];
+  }
+
+  .bank-card-glow-ice {
+    @apply top-57.25 left-165.25 h-337.75 w-339 bg-ice;
+    transform: rotate(37.5deg);
+  }
+
+  .bank-card-glow-top {
+    @apply -top-22 -left-42.5 h-201.75 w-238.5 bg-cobalt;
+    transform: rotate(-140.5deg);
+  }
+
+  .bank-card-glow-bottom {
+    @apply top-250.5 -left-166 h-282 w-371.25 bg-cobalt;
+    transform: rotate(-140.5deg);
+  }
+
+  .bank-card-logo {
+    @apply absolute top-34 left-43 flex items-center gap-9.5 text-[--spacing(19.4)] leading-[1.21] font-semibold;
+  }
+
+  .bank-card-logo-mark {
+    @apply h-18.25 w-34.75 text-ice;
+  }
+
+  .bank-card-icon {
+    @apply absolute flex;
+  }
+
+  .bank-card-icon svg {
+    @apply size-full;
+  }
+
+  .bank-card-contactless {
+    @apply top-82.25 left-33.5 size-37;
+  }
+
+  .bank-card-chip {
+    @apply top-34 left-271.25 h-36.5 w-29;
+  }
+
+  .bank-card-strip {
+    @apply absolute inset-x-0 top-323.25 flex h-128.5 flex-col gap-5 bg-snow/50 pt-32.75 pl-27 leading-[1.21];
+  }
+
+  .bank-card-name {
+    @apply max-w-213 truncate text-[length:--spacing(26.9)] font-semibold;
+  }
+
+  .bank-card-exp {
+    @apply text-[length:--spacing(13.45)] font-medium;
+  }
+
+  .bank-card-visa {
+    @apply top-51.25 left-250.25 h-17.5 w-57;
+  }
+}

@@ -1,0 +1,120 @@
+@layer components {
+  .feature {
+    @apply relative pt-80 md:pt-120 lg:pt-122;
+  }
+
+  .feature-canvas {
+    @apply px-16 md:px-32 lg:px-132;
+  }
+
+  /* Высота как в макете — минимальная: если текст слайда длиннее,
+     карточка растёт, а полоски не выпадают за её край (снизу заходит лента) */
+  .feature-card {
+    /* isolate: узор с mix-blend-mode смешивается только с фоном карточки.
+       Без этого браузер собирает для смешивания всю страницу, и любое
+       движение рядом (карты, лента под карточкой) пересобирает её заново.
+       pb-144 до lg: снизу лента «Ways to Manage Money» заходит на карточку.
+       Раньше часть этого отступа (80) случайно давали скрытые <source> узора */
+    @apply relative isolate flex flex-col-reverse gap-40 overflow-hidden rounded-[--spacing(64)] bg-navy px-24 pt-48 pb-144 max-lg:rounded-[32px] md:px-48 lg:block lg:min-h-748 lg:overflow-visible lg:p-0 lg:pb-120;
+  }
+
+  .feature-pattern {
+    @apply inset-0 size-full object-cover object-right lg:right-auto lg:bottom-auto lg:h-full lg:w-1179;
+  }
+
+  /* Банковские карты. На мобильных — уменьшенная копия композиции */
+  .feature-art {
+    @apply relative mx-auto h-600 w-560 max-lg:[--spacing:calc(min(100cqw,700px)/900)] lg:absolute lg:inset-0 lg:size-auto;
+  }
+
+  .bank-card-back {
+    @apply top-104.25 left-0 lg:-left-91.5;
+    transform: rotate(-4.84deg);
+  }
+
+  .bank-card-front {
+    @apply top-197.25 left-157.25 lg:left-65.75;
+    transform: rotate(2.54deg);
+  }
+
+  .feature-star {
+    @apply text-cobalt opacity-20;
+    transform: rotate(9.08deg);
+  }
+
+  .feature-star-lg {
+    @apply top-80.25 left-330.75 size-44.5 lg:left-239.25;
+  }
+
+  .feature-star-sm {
+    @apply top-39.25 left-236.75 size-30.5 lg:left-145.25;
+  }
+
+  /* Слайды -> полоски переключения */
+  .feature-body {
+    @apply relative flex flex-col gap-48 lg:gap-107 lg:pt-226 lg:pl-469;
+  }
+
+  .feature-body .title {
+    @apply lg:w-659;
+  }
+
+  .feature-text {
+    @apply max-w-580 text-body text-mist md:text-justify;
+  }
+
+  /* Слайды лежат в одной ячейке сетки друг на друге: высота блока —
+     по самому длинному слайду, при переключении ничего не прыгает */
+  .feature-slides {
+    @apply grid;
+  }
+
+  .feature-slide {
+    @apply col-start-1 row-start-1 flex flex-col gap-24;
+  }
+
+  /* Без JS виден первый слайд. Когда slider.js готов (data-ready),
+     видимостью управляет класс is-active */
+  .feature-slides:not([data-ready]) > .feature-slide:not(:first-child),
+  .feature-slides[data-ready] > .feature-slide:not(.is-active) {
+    @apply invisible;
+  }
+
+  /* Цвет карт для слайда. Пятна внутри карты — те же классы,
+     поэтому достаточно сдвинуть оттенок всей композиции */
+  .feature-art[data-theme="violet"] .bank-card {
+    filter: hue-rotate(40deg);
+  }
+
+  .feature-art[data-theme="mint"] .bank-card {
+    filter: hue-rotate(-75deg) saturate(0.9);
+  }
+
+  .feature-art[data-theme="sunset"] .bank-card {
+    filter: hue-rotate(160deg) saturate(1.1);
+  }
+
+  .dots {
+    @apply flex gap-6.75;
+  }
+
+  /* Свайп по карточке: вертикальную прокрутку страницы оставляем браузеру,
+     горизонтальный жест забирает слайдер */
+  .feature-card {
+    @apply cursor-grab touch-pan-y select-none active:cursor-grabbing;
+  }
+
+  /* Кнопка-полоска; ::before расширяет область нажатия до 24px по высоте.
+     Активная — длинная и подсвечена, неактивные — короткие и тусклые */
+  .dot {
+    @apply relative h-2 w-60 cursor-pointer rounded-full bg-slate transition-[width,background-color] duration-500 ease-out hover:bg-mist/50;
+  }
+
+  .dot::before {
+    @apply absolute inset-x-0 -inset-y-11 content-[''];
+  }
+
+  .dot-active {
+    @apply w-120 cursor-default bg-cobalt hover:bg-cobalt;
+  }
+}

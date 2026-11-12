@@ -1,0 +1,49 @@
+<!-- Заголовки слайдов одинаковые (h2), поэтому имя секции для скринридеров задано через aria-label -->
+<section id="how-it-works" class="feature" aria-label="How it works">
+  <div class="canvas feature-canvas">
+    <div class="feature-card" data-feature-card>
+      <img class="pattern feature-pattern" src="assets/images/decor/feature-pattern.svg" data-widths="800,1179,1768,2358" sizes="(min-width: 1024px) min(82vw, 1179px), 100vw" width="1179" height="748" alt="" loading="lazy" decoding="async">
+
+      <div class="feature-art" data-theme="cobalt" aria-hidden="true" data-feature-art>
+        @@include('src/partials/components/bank-card.html', {"modifier": "bank-card-back"})
+        @@include('src/partials/components/bank-card.html', {"modifier": "bank-card-front"})
+        <span class="star feature-star feature-star-lg" data-star>@@include('src/partials/components/icon.html', {"name": "star"})</span>
+        <span class="star feature-star feature-star-sm" data-star>@@include('src/partials/components/icon.html', {"name": "star"})</span>
+      </div>
+
+      <div class="feature-body">
+        <!-- Слайды выводятся одним циклом без условий: активный слайд и полоски
+             переключения расставляет slider.js. Без JS виден первый слайд.
+             data-card-* — подписи на банковских картах и цвет для этого слайда,
+             data-card-theme: cobalt | violet | mint | sunset -->
+        <div class="feature-slides" aria-live="polite" data-slides>
+          <div class="feature-slide" data-slide data-card-name="John Willison" data-card-exp="Exp 9/27" data-card-theme="cobalt">
+            <h2 class="title text-snow">Simple way to <span class="text-snow/40">manage your money</span></h2>
+            <p class="feature-text" data-reveal>Lorem ipsum dolor sit amet consectetur. Vitae euismod nulla erat morbi amet duis mattis. Ut neque facilisis etiam dolor mauris leo nisl. Sed dictum a eget vestibulum vel vitae et enim turpis.</p>
+          </div>
+          <div class="feature-slide" data-slide data-card-name="Emma Carter" data-card-exp="Exp 4/28" data-card-theme="violet">
+            <h2 class="title text-snow">Instant transfers <span class="text-snow/40">without any fees</span></h2>
+            <p class="feature-text" data-reveal>Placeholder text. Morbi tristique senectus et netus et malesuada fames ac turpis. Integer feugiat scelerisque varius morbi enim nunc faucibus a pellentesque sit amet porttitor eget.</p>
+          </div>
+          <div class="feature-slide" data-slide data-card-name="Liam Brooks" data-card-exp="Exp 11/27" data-card-theme="mint">
+            <h2 class="title text-snow">Smart savings <span class="text-snow/40">that grow every day</span></h2>
+            <p class="feature-text" data-reveal>Placeholder text. Viverra accumsan in nisl nisi scelerisque eu ultrices vitae auctor. Faucibus turpis in eu mi bibendum neque egestas congue quisque egestas diam in arcu.</p>
+          </div>
+          <div class="feature-slide" data-slide data-card-name="Sofia Reyes" data-card-exp="Exp 2/29" data-card-theme="sunset">
+            <h2 class="title text-snow">Full control <span class="text-snow/40">over every payment</span></h2>
+            <p class="feature-text" data-reveal>Placeholder text. Pharetra magna ac placerat vestibulum lectus mauris ultrices eros in. Lacus vel facilisis volutpat est velit egestas dui id ornare arcu odio ut sem.</p>
+          </div>
+        </div>
+
+        <!-- Полоски создаёт slider.js по числу слайдов; data-dot-label — подпись кнопки, номер добавляется сам -->
+        <div class="dots" data-dots data-dot-label="Slide"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticker ticker-money" aria-hidden="true" data-ticker>
+    <p class="ticker-track" data-ticker-track>
+      <span data-text="Ways to Manage Money . "></span><span data-text="Ways to Manage Money . "></span><span data-text="Ways to Manage Money . "></span><span data-text="Ways to Manage Money . "></span>
+    </p>
+  </div>
+</section>

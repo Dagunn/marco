@@ -1,0 +1,81 @@
+@theme {
+  --spacing: 1px;
+
+  --text-hero: 30px;
+  --text-hero--line-height: 1.2;
+  --text-hero--letter-spacing: var(--tracking-tight);
+  --text-hero--font-weight: 700;
+  --text-display: 32px;
+  --text-display--line-height: 1.13;
+  --text-display--letter-spacing: var(--tracking-tight);
+  --text-display--font-weight: 700;
+  --text-metric: 64px;
+  --text-metric--line-height: 1.21;
+  --text-metric--font-weight: 400;
+  --text-cta: 18px;
+  --text-cta--line-height: 1.13;
+  --text-cta--font-weight: 500;
+  --text-stat: 24px;
+  --text-stat--line-height: 1.21;
+  --text-stat--font-weight: 400;
+  --text-lead: 16px;
+  --text-lead--line-height: 1.333;
+  --text-lead--font-weight: 400;
+  --text-link: 16px;
+  --text-link--line-height: 1.21;
+  --text-link--font-weight: 500;
+  --text-nav: 16px;
+  --text-nav--line-height: 1.21;
+  --text-nav--font-weight: 500;
+  --text-body: 16px;
+  --text-body--line-height: 1.333;
+  --text-body--font-weight: 400;
+  --text-caps: 14px;
+  --text-caps--line-height: 1.2;
+  --text-caps--font-weight: 400;
+  --text-label: 11px;
+  --text-label--line-height: 1.21;
+  --text-label--font-weight: 400;
+  --text-logo: 24px;
+  --text-logo--line-height: 1.21;
+  --text-logo--font-weight: 600;
+}
+
+@media (width >= theme(--breakpoint-sm)) {
+  :root {
+    --text-hero: 44px;
+    --text-display: 40px;
+  }
+}
+
+@media (width >= theme(--breakpoint-md)) {
+  :root {
+    --text-hero: 56px;
+    --text-display: 48px;
+    --text-metric: 80px;
+    --text-cta: 20px;
+    --text-caps: 16px;
+    --text-lead: 18px;
+    --text-link: 18px;
+  }
+}
+
+@media (width >= theme(--breakpoint-lg)) {
+  :root {
+    --spacing: calc(min(100cqw, 1440px) / 1440);
+
+    --text-hero: --spacing(98);
+    --text-display: --spacing(64);
+    --text-metric: --spacing(96);
+    --text-cta: --spacing(24);
+    --text-stat: --spacing(31.5);
+    --text-logo: --spacing(30.5);
+
+    --text-lead: max(15px, --spacing(18));
+    --text-link: max(15px, --spacing(18));
+    --text-nav: max(14px, --spacing(16));
+    --text-body: max(14px, --spacing(16));
+    --text-caps: max(13px, --spacing(16));
+    --text-label: max(10px, --spacing(11.5));
+  }
+}

@@ -1,0 +1,26 @@
+<header class="header" data-menu>
+  <div class="header-bar" data-header-bar>
+    <a class="header-logo" href="#" aria-label="Marco — home">
+      <span class="logo-mark header-logo-mark">@@include('src/partials/components/icon.html', {"name":
+        "logo-mark"})</span>
+      Marco
+    </a>
+
+    <nav id="main-nav" class="header-nav" aria-label="Main">
+      <ul class="nav-list">
+        <li><a class="nav-link" href="#">Features</a></li>
+        <li><a class="nav-link" href="#">Pricing</a></li>
+        <li><a class="nav-link" href="#">About Us</a></li>
+        <li><a class="nav-link" href="#">FAQ</a></li>
+        <li><a class="nav-link" href="#how-it-works">How it works</a></li>
+      </ul>
+    </nav>
+
+    <a class="btn uppercase" href="#">Sign up</a>
+
+    <button class="burger" type="button" aria-expanded="false" aria-controls="main-nav" data-menu-toggle>
+      <span class="sr-only">Menu</span>
+      <span class="burger-lines" aria-hidden="true"><span></span><span></span><span></span></span>
+    </button>
+  </div>
+</header>

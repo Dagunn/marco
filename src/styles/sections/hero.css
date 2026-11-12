@@ -1,0 +1,238 @@
+@layer components {
+  /*
+    Слои hero как в Figma: третья строка заголовка (z-1) → карты (z-2,
+    сцена .hero-stage) → первые две строки (z-3). Так буква T в «The Easy way»
+    уходит под синюю карту, а «Manage your / Personal Finances» лежат поверх.
+    У .hero и .hero-title нет z-index и transform, поэтому строки и карты
+    сортируются в одном контексте наложения.
+  */
+  /*
+    Геометрия края hero — общая для тёмного фона (.hero-bg) и сцены с картами
+    (.hero-stage), поэтому переменные заданы на самой секции.
+    --pivot — центр ленты Best Features от середины страницы.
+    --depth — глубина края под центром ленты. Шире 1440px лента перестаёт расти,
+    поэтому и глубина фиксируется — иначе край поднимается над лентой
+    и между ними появляется светлый зазор.
+    --extra — на широких экранах правый конец края уходит ниже: удлиняем фон.
+    --room — небольшой запас снизу у .hero-bg, чтобы наклонённый край
+    никогда не упирался в его нижнюю границу
+  */
+  .hero {
+    --pivot: calc(var(--spacing) * 97.5);
+    --depth: calc(0.14583 * (min(50cqw, 720px) - var(--pivot)));
+    --extra: max(0px, 0.14583 * (50cqw - 720px));
+    --room: 6cqw;
+    @apply relative lg:h-1205 max-lg:[--pivot:9.75cqw];
+  }
+
+  /*
+    Тёмный фон со скошенным низом, заходит на 20 единиц под ленту.
+    Край поворачивается вокруг центра ленты Best Features (--pivot от середины
+    страницы), поэтому при переходе он наклоняется синхронно с лентой.
+
+    Сам фон — широкий тёмный прямоугольник .hero-bg-fill, его нижняя грань
+    и есть край. При переходе GSAP только поворачивает его (transform), а не
+    меняет clip-path: поворот браузер делает на видеокарте без перерисовки,
+    а clip-path в каждом кадре перерисовывался бы целиком (особенно в Firefox).
+    Угол наклона — atan(0.14583) ≈ 8.297deg. Без JS край сразу наклонён как в макете.
+  */
+  .hero-bg {
+    @apply absolute inset-x-0 top-0 h-[calc(100%+--spacing(20)+var(--extra)+var(--room))] overflow-hidden;
+  }
+
+  /* Прямоугольник шире экрана в 5 раз и выше hero: после поворота его
+     боковые и верхняя грани остаются за пределами .hero-bg и обрезаются.
+     Нижняя грань проходит через точку поворота — центр ленты */
+  .hero-bg-fill {
+    @apply absolute -inset-x-[200%] -top-[50cqw] bg-navy;
+    bottom: calc(var(--extra) + var(--depth) + var(--room));
+    transform-origin: calc(50% + var(--pivot)) 100%;
+    transform: rotate(8.297deg);
+    will-change: transform;
+  }
+
+  /* По центру: left вместо отрицательного margin (transform занят GSAP) */
+  .hero-grid {
+    @apply -top-30 left-[calc(50%-var(--spacing)*690.5)] size-1381 opacity-20;
+  }
+
+  /* Отступы между блоками первого экрана — только gap:
+     .hero-canvas: шапка (.hero-head) -> текст с кнопкой (.hero-intro);
+     .hero-head: заголовок -> .hero-lead; .hero-lead: показатель -> «Get started».
+     На десктопе показатель лежит абсолютно и в gap не участвует */
+  .hero-canvas {
+    @apply flex flex-col items-center gap-48 lg:gap-142 px-16 pt-120 pb-[104cqw] md:px-32 md:pt-140 lg:h-full lg:px-0 lg:pt-218 lg:pb-0;
+  }
+
+  .hero-head {
+    @apply flex flex-col items-center gap-24;
+  }
+
+  .hero-lead {
+    @apply flex flex-col items-center gap-32;
+  }
+
+  .hero-title {
+    @apply text-center text-hero text-snow uppercase lg:w-1199;
+  }
+
+  .hero-line {
+    @apply relative block;
+  }
+
+  .hero-line-back {
+    @apply z-1;
+  }
+
+  .hero-line-front {
+    @apply z-3;
+  }
+
+  /* Строки заголовка лежат поверх карт и занимают всю ширину заголовка,
+     поэтому перехватывали бы наведение: карта не наклонялась бы там, где над ней строка.
+     Для мыши пропускаем указатель сквозь них к картам. Ссылок в строках нет,
+     а выделить текст по-прежнему можно, начав выделение рядом */
+  @media (hover: hover) and (pointer: fine) {
+    .hero-line {
+      pointer-events: none;
+    }
+  }
+
+  /*
+    Блик по слову Finances. Включается из JS после появления заголовка
+    (data-shine-ready), до этого и без JS слово просто ледяного цвета.
+    Полоса света стоит за правым краем, GSAP прогоняет её через слово,
+    сдвигая background-position с 100% до 0%.
+  */
+  [data-hero-shine][data-shine-ready] {
+    background: linear-gradient(110deg, var(--color-ice) 36%, #fff 48%, #fff 52%, var(--color-ice) 64%) 100% 0 / 300% 100% no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    /* не color: его перебивает утилита text-ice */
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-stats {
+    @apply relative z-3 flex flex-col items-center gap-13.25 text-snow lg:absolute lg:top-248 lg:left-1129;
+  }
+
+  .avatars {
+    @apply flex;
+  }
+
+  /* img лежит внутри <picture>, поэтому нахлёст считаем по picture */
+  .avatar {
+    @apply size-39.75 rounded-full;
+  }
+
+  .avatars > :not(:first-child) .avatar {
+    @apply -ml-5.5;
+  }
+
+  .hero-stats-label {
+    @apply flex items-center gap-12.5 text-label uppercase before:size-6.5 before:shrink-0 before:rounded-full before:bg-ice lg:max-w-240;
+  }
+
+  /*
+    Сцена с картами. Слой z-2: выше третьей строки заголовка (z-1),
+    но ниже первых двух (z-3), как в Figma.
+    Сцена шире экрана в 3 раза и выше hero, её нижняя грань проходит через
+    центр ленты, как у тёмного фона. Сцена поворачивается вместе с краем,
+    а .hero-stage-inner — на тот же угол обратно, поэтому карты стоят на месте,
+    а обрезаются по наклонному краю. Без JS оба поворота заданы здесь
+    и взаимно гасятся.
+  */
+  .hero-stage {
+    @apply pointer-events-none absolute -inset-x-full -top-400 z-2 overflow-hidden;
+    bottom: calc(var(--depth) - var(--spacing) * 20);
+    transform-origin: calc(50% + var(--pivot)) 100%;
+    transform: rotate(8.297deg);
+  }
+
+  .hero-stage-inner {
+    @apply absolute inset-0;
+    transform-origin: calc(50% + var(--pivot)) 100%;
+    transform: rotate(-8.297deg);
+  }
+
+  /* Рамка ровно по hero: карты позиционируются так же, как внутри .hero-canvas */
+  .hero-stage-frame {
+    @apply absolute top-400 left-[calc(100%/3)] w-[calc(100%/3)];
+    bottom: calc(var(--spacing) * 20 - var(--depth));
+  }
+
+  .hero-stage-canvas {
+    @apply h-full;
+  }
+
+  .hero-card {
+    @apply pointer-events-auto absolute;
+  }
+
+  .hero-card-img {
+    @apply block size-full object-cover;
+  }
+
+  .hero-card-cobalt {
+    @apply bottom-[40cqw] left-[4cqw] aspect-368/533 w-[38cqw] lg:top-126.5 lg:bottom-auto lg:left-45.5 lg:h-533 lg:w-368;
+    transform: rotate(-17.19deg);
+  }
+
+  .hero-card-ice {
+    @apply right-[8cqw] bottom-[22cqw] aspect-418/547 w-[42cqw] lg:top-363 lg:right-auto lg:bottom-auto lg:left-977 lg:h-547 lg:w-418.5;
+  }
+
+  .hero-star {
+    @apply hidden text-ice mix-blend-soft-light lg:block;
+  }
+
+  .hero-star-lg {
+    @apply top-180 left-1079 size-42;
+  }
+
+  .hero-star-sm {
+    @apply top-167 left-1065 size-26;
+  }
+
+  .hero-cta {
+    @apply relative z-3 flex items-center gap-24 text-cta text-ice uppercase hover:text-snow;
+  }
+
+  .hero-cta-arrow {
+    @apply flex h-15 w-98;
+  }
+
+  .hero-cta-arrow svg {
+    @apply size-full;
+  }
+
+  .hero-intro {
+    @apply relative z-3 flex flex-col items-center gap-30 text-center lg:items-start lg:self-start lg:pl-132 lg:text-left;
+  }
+
+  /* На десктопе высота hero фиксированная: слишком длинный текст
+     обрезается после 4 строк, чтобы кнопка не заехала на ленту */
+  .hero-text {
+    @apply max-w-[31em] text-caps text-snow uppercase lg:line-clamp-4;
+  }
+
+  /* Круглая кнопка: текст по кругу и иконка в одной ячейке грида.
+     grid-cols-1 grid-rows-1 — ячейка ровно по размеру кнопки. Без них она
+     подстраивалась под исходный размер картинки (144px) и на кнопках меньше
+     этого (96px на телефоне, 140px на планшете) кольцо вытягивалось и съезжало */
+  .play {
+    @apply absolute right-[3cqw] bottom-[16cqw] z-3 grid grid-cols-1 grid-rows-1 size-96 md:size-140 place-items-center rounded-full bg-brand text-navy *:col-start-1 *:row-start-1 lg:top-875 lg:right-auto lg:bottom-auto lg:left-1172 lg:size-170;
+  }
+
+  .play-text {
+    @apply size-[84.7%];
+  }
+
+  .play-icon {
+    @apply flex h-[16.8%] w-[15.8%];
+  }
+
+  .play-icon svg {
+    @apply size-full;
+  }
+}

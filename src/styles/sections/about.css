@@ -1,0 +1,70 @@
+@layer components {
+  .about {
+    @apply relative;
+  }
+
+  /* До lg вступление и метрики идут столбцом с gap; на lg метрики лежат абсолютно */
+  .about-canvas {
+    @apply flex flex-col gap-48 lg:block px-16 pt-96 md:px-32 md:pt-160 lg:h-673 lg:px-0 lg:pt-67;
+  }
+
+  .about-star {
+    @apply -top-83.75 left-1083.25 hidden size-44.5 text-cobalt lg:block;
+    transform: rotate(9.08deg);
+  }
+
+  .about-intro {
+    @apply flex flex-col items-start gap-24 lg:w-680 lg:pl-132 lg:box-content;
+  }
+
+  /* Заголовок и текст: отступ между ними свой, поэтому отдельная обёртка */
+  .about-head {
+    @apply flex flex-col items-start gap-24 md:gap-40;
+  }
+
+  .about-text {
+    @apply max-w-580 text-body text-slate md:text-justify;
+  }
+
+  /* Карточки метрик внахлёст, позиции — из макета */
+  .metrics {
+    @apply flex flex-col gap-16 md:flex-row md:flex-wrap lg:block;
+  }
+
+  .metric {
+    @apply flex flex-col items-center gap-16 rounded-metric bg-snow px-24 py-40 md:py-56 text-center text-navy md:flex-1 lg:absolute;
+  }
+
+  /*
+    Позиции и вид карточек задаются по порядку, а не классами:
+    CMS выводит метрики циклом с одним классом .metric.
+    1 — пользователи, 2 — выручка (тёмная, цифра с градиентом), 3 — рост.
+  */
+  .metric:nth-child(1) {
+    @apply lg:top-0 lg:left-780 lg:w-388;
+  }
+
+  .metric:nth-child(2) {
+    @apply bg-navy text-snow shadow-metric lg:top-253 lg:left-976 lg:w-412;
+  }
+
+  .metric:nth-child(3) {
+    @apply lg:top-381 lg:left-580 lg:w-373;
+  }
+
+  .metric-value {
+    @apply text-metric whitespace-nowrap;
+  }
+
+  .metric-label {
+    @apply max-w-[13.84em] text-lead;
+  }
+
+  .metric:nth-child(2) .metric-value {
+    @apply text-brand-gradient;
+  }
+
+  .metric:nth-child(2) .metric-label {
+    @apply opacity-80;
+  }
+}

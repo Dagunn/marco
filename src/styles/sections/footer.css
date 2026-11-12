@@ -1,0 +1,50 @@
+@layer components {
+  .footer {
+    /* isolate: узор с mix-blend-mode смешивается только с фоном подвала.
+       mt-60 — отступ от последней секции. Он намеренно margin, а не gap у <body>:
+       в <body> CMS и плагины вставляют свои служебные блоки, и gap дал бы им лишний отступ */
+    @apply relative isolate mt-60 overflow-hidden bg-navy text-snow lg:h-960;
+  }
+
+  .footer-pattern {
+    @apply inset-0 size-full object-cover opacity-20;
+  }
+
+  /* Блок с призывом -> логотип с нижней строкой */
+  .footer-canvas {
+    @apply flex flex-col items-center gap-120 lg:gap-155 px-16 pt-120 pb-40 md:px-32 lg:h-full lg:px-72 lg:pt-375 lg:pb-79.5;
+  }
+
+  .footer-cta {
+    @apply flex flex-col items-center gap-40 lg:gap-54;
+  }
+
+  .footer-title {
+    @apply max-w-878 text-center uppercase;
+  }
+
+  .footer-end {
+    @apply flex w-full flex-col items-center gap-32 lg:gap-39.5;
+  }
+
+  /* pl-1.25 и gap 14.75 вместо margin у значка: та же раскладка, что в макете */
+  .footer-logo {
+    @apply flex items-center gap-14.75 pl-1.25 text-logo;
+  }
+
+  .footer-logo-mark {
+    @apply h-29 w-55 text-ice;
+  }
+
+  .footer-bottom {
+    @apply flex w-full flex-col items-center gap-12 text-center text-lead md:grid md:grid-cols-3 md:gap-x-24;
+  }
+
+  .footer-link {
+    @apply hover:text-ice md:first:justify-self-start md:first:text-left md:last:justify-self-end md:last:text-right;
+  }
+
+  .footer-copy {
+    @apply max-md:order-last md:justify-self-center;
+  }
+}

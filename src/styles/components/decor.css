@@ -1,0 +1,13 @@
+@layer components {
+  .pattern {
+    @apply pointer-events-none absolute max-w-none mix-blend-soft-light select-none;
+  }
+
+  .star {
+    @apply pointer-events-none absolute block;
+  }
+
+  .star svg {
+    @apply size-full;
+  }
+}

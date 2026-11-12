@@ -1,0 +1,51 @@
+@layer components {
+  .btn {
+    @apply relative isolate inline-flex shrink-0 items-center justify-center overflow-hidden rounded-button bg-ice px-24 py-16 text-nav whitespace-nowrap text-navy transition-[translate,box-shadow] duration-300 ease-out hover:-translate-y-2 hover:shadow-button active:translate-y-0 active:shadow-none active:duration-100;
+  }
+
+  .btn::before {
+    @apply absolute inset-0 -z-1 -translate-x-full bg-linear-to-r from-transparent via-[rgb(255_255_255/0.75)] to-transparent content-[''];
+  }
+
+  @media (hover: hover) {
+    .btn:hover::before {
+      @apply translate-x-full transition-[translate] duration-700 ease-out;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn {
+      @apply hover:translate-y-0;
+    }
+
+    .btn::before {
+      @apply hidden;
+    }
+  }
+
+  .nav-link {
+    @apply text-nav whitespace-nowrap text-snow uppercase hover:text-ice;
+  }
+
+  .nav-link,
+  .footer-link {
+    @apply relative after:absolute after:inset-x-0 after:-bottom-4 after:h-px after:origin-right after:scale-x-0 after:bg-current after:transition-transform after:duration-500 after:ease-out hover:after:origin-left hover:after:scale-x-100;
+  }
+
+  .link-arrow {
+    @apply inline-flex items-center gap-24 text-link hover:text-cobalt;
+  }
+
+  .link-arrow-icon {
+    @apply flex h-12 w-63;
+  }
+
+  .logo-mark {
+    @apply flex shrink-0;
+  }
+
+  .logo-mark svg,
+  .link-arrow-icon svg {
+    @apply size-full;
+  }
+}

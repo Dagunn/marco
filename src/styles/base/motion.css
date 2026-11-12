@@ -1,0 +1,16 @@
+@layer base {
+  .is-animated
+    :is(
+      [data-header-bar],
+      [data-hero-grid],
+      [data-hero-line],
+      [data-hero-card],
+      [data-hero-stats],
+      [data-hero-cta],
+      [data-hero-intro],
+      [data-play],
+      [data-hero] [data-star]
+    ) {
+    visibility: hidden;
+  }
+}

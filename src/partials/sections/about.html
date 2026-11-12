@@ -1,0 +1,43 @@
+<section class="about" aria-labelledby="about-title">
+  <div class="ticker ticker-band" aria-hidden="true" data-ticker data-band>
+    <!-- Прорисовка ленты при переходе: фон выезжает слева (data-band-sheet),
+         а текст сдвигается обратно на столько же (data-band-text) и стоит на месте -->
+    <div class="ticker-band-sheet" data-band-sheet>
+      <div class="ticker-band-text" data-band-text>
+        <p class="ticker-track" data-ticker-track>
+          <span data-text="Best Features  .  "></span><span data-text="Best Features  .  "></span><span data-text="Best Features  .  "></span><span data-text="Best Features  .  "></span><span data-text="Best Features  .  "></span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="canvas about-canvas">
+    <span class="star about-star" aria-hidden="true" data-star>@@include('src/partials/components/icon.html', {"name": "star"})</span>
+
+    <div class="about-intro">
+      <div class="about-head">
+        <h2 id="about-title" class="title">Get to know <span class="text-navy/50">More<br> about Marco</span></h2>
+        <p class="about-text" data-reveal>Lorem ipsum dolor sit amet consectetur. Vitae euismod nulla erat morbi amet duis mattis. Ut neque facilisis etiam dolor mauris leo nisl. Sed dictum a eget vestibulum vel vitae et enim turpis. Nunc facilisi sed dignissim purus erat adipiscing adipiscing pellentesque.</p>
+      </div>
+      <a class="link-arrow" href="#" data-reveal>
+        Get Started
+        <span class="link-arrow-icon" aria-hidden="true">@@include('src/partials/components/icon.html', {"name": "arrow"})</span>
+      </a>
+    </div>
+
+    <ul class="metrics" aria-label="Marco in numbers">
+      <li class="metric" data-metric>
+        <p class="metric-value" data-count>456 K</p>
+        <p class="metric-label">Marco Users from all over the globe</p>
+      </li>
+      <li class="metric" data-metric>
+        <p class="metric-value" data-count>466 M</p>
+        <p class="metric-label">Marco’s Revenue in 2026<br> in the first Quarter</p>
+      </li>
+      <li class="metric" data-metric>
+        <p class="metric-value" data-count>256%</p>
+        <p class="metric-label">Marco Investment Growth<br> in 2026</p>
+      </li>
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,55 @@
+@layer components {
+  .ticker {
+    @apply pointer-events-none overflow-hidden select-none;
+  }
+
+  .ticker-track {
+    @apply absolute flex font-semibold tracking-tight whitespace-pre uppercase;
+    line-height: 1.13;
+    will-change: transform;
+  }
+
+  .ticker-track > [data-text]::before {
+    content: attr(data-text);
+  }
+
+  .ticker-band {
+    --band-w: calc(--spacing(2128) + max(0px, 100cqw - 1440px));
+    @apply absolute -top-140.25 z-3 h-202 w-(--band-w) text-navy max-lg:[--spacing:calc(100cqw/1000)];
+    left: calc(50% + --spacing(97.5) - var(--band-w) / 2);
+    transform: rotate(8.2deg);
+  }
+
+  .ticker-band-sheet {
+    @apply absolute inset-0 overflow-hidden bg-ice;
+    will-change: transform;
+  }
+
+  .ticker-band-text {
+    @apply absolute inset-0;
+  }
+
+  .ticker-band .ticker-track {
+    @apply top-46.25 left-[calc(50%-var(--spacing)*1385)] text-[length:--spacing(96)];
+  }
+
+  .ticker-money {
+    @apply relative -mt-73 h-145 text-cobalt max-lg:-mt-24 max-lg:[--spacing:calc(100cqw/1000)];
+  }
+
+  .ticker-money .ticker-track {
+    @apply top-0 left-[calc(50%-var(--spacing)*1740)] text-[length:--spacing(128)];
+
+    --o: --spacing(1);
+    --d: calc(var(--o) * 0.7071);
+    text-shadow:
+      var(--o) 0 var(--color-navy),
+      calc(var(--o) * -1) 0 var(--color-navy),
+      0 var(--o) var(--color-navy),
+      0 calc(var(--o) * -1) var(--color-navy),
+      var(--d) var(--d) var(--color-navy),
+      calc(var(--d) * -1) var(--d) var(--color-navy),
+      var(--d) calc(var(--d) * -1) var(--color-navy),
+      calc(var(--d) * -1) calc(var(--d) * -1) var(--color-navy);
+  }
+}

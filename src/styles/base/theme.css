@@ -1,0 +1,27 @@
+@theme {
+  --color-*: initial;
+
+  --color-navy: #0b1530;
+  --color-ice: #a9dfff;
+  --color-cobalt: #7c9fff;
+  --color-snow: #f6f9ff;
+  --color-mist: #eaf0fa;
+  --color-slate: #50617a;
+
+  --font-sans:
+    "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+
+  --container-canvas: 1440px;
+
+  --tracking-tight: -0.015em;
+
+  --radius-button: calc(var(--spacing) * 8);
+  --radius-metric: calc(var(--spacing) * 20);
+
+  --shadow-metric: 0 4px 16px rgb(185 185 185 / 0.25);
+
+  --shadow-button: 0 8px 24px rgb(169 223 255 / 0.35);
+
+  --default-transition-duration: 300ms;
+}

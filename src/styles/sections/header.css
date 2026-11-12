@@ -1,0 +1,58 @@
+@layer components {
+  .header {
+    @apply absolute inset-x-0 top-0 z-20;
+  }
+
+  .header-bar {
+    /* Отступы между логотипом, меню, кнопкой и бургером — gap.
+       До lg меню пустое (список скрыт): его pl-8 плюс два gap по 4 дают
+       те же 16 между логотипом и кнопкой. На lg: gap 48 + pl-24 у меню = 72 */
+    @apply relative mx-auto flex max-w-canvas items-center gap-4 lg:gap-48 px-16 py-16 md:px-32 lg:px-56 lg:py-32;
+  }
+
+  .header-logo {
+    @apply flex shrink-0 items-center gap-12.75 pl-1.25 text-nav text-snow uppercase;
+  }
+
+  .header-logo-mark {
+    @apply h-24 w-46 text-cobalt;
+  }
+
+  /* min-w-0: длинные пункты меню переносятся на вторую строку,
+     а не выталкивают кнопку Sign up за край экрана */
+  .header-nav {
+    @apply max-lg:pl-8 lg:min-w-0 lg:flex-1 lg:pl-24;
+  }
+
+  .nav-list {
+    @apply hidden lg:flex lg:flex-wrap lg:items-center lg:gap-x-56 lg:gap-y-12;
+  }
+
+  /* Последний пункт меню на десктопе прижат вправо, к кнопке Sign up.
+     Задано здесь, а не классом в разметке: меню из CMS выводится циклом */
+  .nav-list > li:last-child {
+    @apply lg:ml-auto;
+  }
+
+  .header-bar > .btn {
+    /* ml-auto — прижать к правому краю: это выравнивание, а не отступ.
+       На телефоне кнопка компактнее, чтобы не перевешивала логотип и бургер */
+    @apply ml-auto uppercase max-md:px-16 max-md:py-10 max-md:text-[13px];
+  }
+
+  .burger {
+    @apply -mr-12 grid size-48 cursor-pointer place-items-center text-snow lg:hidden;
+  }
+
+  .burger-lines {
+    @apply flex w-22 flex-col gap-5;
+  }
+
+  .burger-lines > span {
+    @apply h-2 rounded-full bg-current;
+  }
+
+  [data-menu][data-open] .nav-list {
+    @apply absolute inset-x-16 top-full flex flex-col items-start gap-24 rounded-[16px] bg-navy p-24 shadow-metric ring-1 ring-snow/10 md:inset-x-32;
+  }
+}

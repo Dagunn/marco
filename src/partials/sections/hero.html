@@ -1,0 +1,77 @@
+<section class="hero" aria-labelledby="hero-title" data-hero>
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-bg-fill" data-hero-bg></div>
+  </div>
+
+  <!--
+    Сцена для карт: при переходе к Best Features карты «ныряют» под ленту.
+    Нижний край сцены совпадает с тёмным краем hero и поворачивается вместе с ним,
+    а содержимое поворачивается обратно (transition.js), поэтому карты стоят на своих
+    местах и исчезают ровно за краем, не вылезая на светлый фон.
+    data-hero-dive — обёртка, которую двигает переход. Сама карта (data-hero-card)
+    занята вступлением и наклоном к курсору, поэтому анимации не мешают друг другу
+  -->
+  <div class="hero-stage" data-hero-stage>
+    <div class="hero-stage-inner" data-hero-stage-inner>
+      <div class="hero-stage-frame">
+        <div class="canvas hero-stage-canvas">
+          <div class="hero-card hero-card-cobalt" data-hero-dive>
+            <img class="hero-card-img" src="assets/images/card-cobalt.png" data-widths="368,736"
+              sizes="(min-width: 1440px) 368px, (min-width: 1024px) 26vw, 45vw" width="368" height="533" alt="Cobalt blue metal Marco Visa card"
+              fetchpriority="high" data-hero-card="cobalt">
+          </div>
+          <div class="hero-card hero-card-ice" data-hero-dive>
+            <img class="hero-card-img" src="assets/images/card-ice.png" data-widths="418,836"
+              sizes="(min-width: 1440px) 418px, (min-width: 1024px) 29vw, 50vw" width="418" height="547" alt="Brushed silver Marco Visa card"
+              fetchpriority="high" data-hero-card="ice">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="canvas hero-canvas">
+    <img class="pattern hero-grid" src="assets/images/decor/hero-grid.svg" width="1381" height="1381" alt="" data-hero-grid>
+    <!-- Отступы первого экрана через gap: заголовок → (показатель → кнопка) → текст.
+         Обёртки без z-index и transform, поэтому слои строк и карт не меняются -->
+    <div class="hero-head">
+      <h1 id="hero-title" class="hero-title">
+        <span class="hero-line hero-line-front" data-hero-line>Manage your</span>
+        <span class="hero-line hero-line-front" data-hero-line>Personal <span class="text-ice" data-hero-shine>Finances</span></span>
+        <span class="hero-line hero-line-back text-ice" data-hero-line>the Easy way</span>
+      </h1>
+
+      <div class="hero-lead">
+        <div class="hero-stats" data-hero-stats>
+          <p class="flex items-center gap-15">
+            <span class="avatars" aria-hidden="true">
+              <img class="avatar" src="assets/images/avatar-1.png" data-widths="40,80,120" sizes="40px" width="40" height="40" alt="Young woman with dark hair in a denim jacket" decoding="async">
+              <img class="avatar" src="assets/images/avatar-2.png" data-widths="40,80,120" sizes="40px" width="40" height="40" alt="Smiling woman with long brown hair" decoding="async">
+              <img class="avatar" src="assets/images/avatar-3.png" data-widths="40,80,120" sizes="40px" width="40" height="40" alt="Laughing woman in glasses and a white sweater" decoding="async">
+            </span>
+            <span class="text-stat" data-count>10 M</span>
+          </p>
+          <p class="hero-stats-label">Active Users Worldwide</p>
+        </div>
+        <a class="hero-cta" href="#" data-hero-cta>
+          Get started
+          <span class="hero-cta-arrow" aria-hidden="true">@@include('src/partials/components/icon.html', {"name": "arrow-long"})</span>
+        </a>
+      </div>
+    </div>
+
+    <span class="star hero-star hero-star-lg" aria-hidden="true" data-star>@@include('src/partials/components/icon.html', {"name": "star"})</span>
+    <span class="star hero-star hero-star-sm" aria-hidden="true" data-star>@@include('src/partials/components/icon.html', {"name": "star"})</span>
+
+    <div class="hero-intro" data-hero-intro>
+      <p class="hero-text">Lorem ipsum dolor sit amet consectetur. Ipsum pretium integer elit et semper nunc in odio. Tincidunt in metus semper pellentesque netus</p>
+      <a class="btn font-normal lowercase" href="#">Digitize now</a>
+    </div>
+
+    <a class="play" href="#how-it-works" data-play>
+      <span class="sr-only">How it works</span>
+      <img class="play-text" src="assets/images/decor/play-text.svg" width="144" height="144" alt="" data-play-text>
+      <span class="play-icon" aria-hidden="true" data-play-icon>@@include('src/partials/components/icon.html', {"name": "play"})</span>
+    </a>
+  </div>
+</section>
